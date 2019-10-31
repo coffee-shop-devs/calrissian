@@ -1,0 +1,24 @@
+{
+  "name": "calrissian",
+  "version": "1.0.0",
+  "description": "Rando project for generating rando languages for rando raisons.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coffee-shop-devs/calrissian.git"
+  },
+  "author": "Coffee Shop Devs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coffee-shop-devs/calrissian/issues"
+  },
+  "homepage": "https://github.com/coffee-shop-devs/calrissian#readme"
+}
