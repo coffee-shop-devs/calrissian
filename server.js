@@ -1,5 +1,9 @@
 const express = require('express');
 const app     = express();
+const port    = 8081;
+const start   = function () {};
 
-// Start application, listen on 8081
-const server  = app.listen(8081, function () {});
+app.listen(port, start);
+
+module.exports = start;
+
