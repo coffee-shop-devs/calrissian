@@ -1,12 +1,33 @@
-const func    = require('../server.js');
-const express = require('express');
-const app     = express();
-const port    = 8081;
+'use strict';
 
-console.log(func);
-var http = require('http'),
-  options = {method: 'HEAD', host: 'localhost', port: 8081, path: '/'},
-  req = http.request(options, function(r) {
-    console.log(JSON.stringify(r.headers));
-});
-req.end();
+var server;
+
+tear_down(set_up());
+
+function set_up() {
+  //return require('child_process').spawn('ls', ['-la'], { detached: true, stdio: 'inherit' });
+  return require('child_process').spawn('node', ['server.js'], { detached: true, stdio: 'inherit' });
+};
+
+function tear_down($server) {
+  
+  console.log("tearing down");
+//  $server.kill();
+}
+
+function test($server) {
+  const http = require('http');
+  const req  = http.request({
+    host:   '0.0.0.0',
+    port:   8081,
+    method: 'GET'
+    }, (res) => {
+    res.resume();
+    res.on('end', () => {
+      if (!res.complete) console.error('The connection was terminated');
+      if (res.complete) console.log(res);
+    });
+  });
+  req.end();
+  return $server;
+}
