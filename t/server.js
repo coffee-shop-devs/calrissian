@@ -5,17 +5,16 @@ var server;
 tear_down(set_up());
 
 function set_up() {
-  //return require('child_process').spawn('ls', ['-la'], { detached: true, stdio: 'inherit' });
   return require('child_process').spawn('node', ['server.js'], { detached: true, stdio: 'inherit' });
 };
 
 function tear_down($server) {
   
   console.log("tearing down");
-//  $server.kill();
+  server.kill();
 }
 
-function test($server) {
+function test(server) {
   const http = require('http');
   const req  = http.request({
     host:   '0.0.0.0',
