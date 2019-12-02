@@ -1,32 +1,20 @@
 'use strict';
 
-var server;
+test();
 
-tear_down(set_up());
-
-function set_up() {
-  return require('child_process').spawn('node', ['server.js'], { detached: true, stdio: 'inherit' });
+function startServer() {
+  console.log("starting up");
+  var proc = require('child_process').spawn('node', ['../server.js'], {
+    detached: true,
+    stdio:    'inherit',
+  });
+  proc.kill();
 };
 
-function tear_down($server) {
-  
-  console.log("tearing down");
-  server.kill();
-}
-
-function test(server) {
-  const http = require('http');
-  const req  = http.request({
-    host:   '0.0.0.0',
-    port:   8081,
-    method: 'GET'
-    }, (res) => {
-    res.resume();
-    res.on('end', () => {
-      if (!res.complete) console.error('The connection was terminated');
-      if (res.complete) console.log(res);
-    });
+function test() {
+  startServer();
+  const request = require('request');
+  request('http://0.0.0.0:8081', { json: true }, (err, res, body) => {
+  if (err) console.log(err);
   });
-  req.end();
-  return $server;
 }
