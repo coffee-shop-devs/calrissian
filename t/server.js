@@ -12,6 +12,8 @@ function setup() {
 =======
 //var proc;
 
+//var proc;
+
 test();
 
 function setup() {
@@ -25,6 +27,9 @@ function setup() {
 
 function test() {
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   // Create child process
   console.log("Starting application");
@@ -32,6 +37,7 @@ function test() {
     detached: true,
     stdio:    'inherit',
   });
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   console.log(`Proc pid ${proc.pid}`);
 }
@@ -50,6 +56,8 @@ function testBody() {
 
 function teardown() {
 =======
+=======
+>>>>>>> Stashed changes
 
   // Check for pid from child process - if true, make a request
   if (proc.pid) {
