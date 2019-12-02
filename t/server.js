@@ -1,6 +1,5 @@
 'use strict';
 
-
 const request = require('request');
 
 test();
@@ -15,7 +14,7 @@ function test() {
   // Check for pid from child process - if true, make a request
   if (proc.pid) {
     console.log(`Started application with pid ${proc.pid}`);
-    request('http://0.0.0.0:8081', function( err, res, body ){
+    request('http://localhost:8081', { timeout: 5 }, function( err, res, body ){
       if (body == "Hello World!") {
         console.log("Test passed. Confirmed request body matched");
       }
