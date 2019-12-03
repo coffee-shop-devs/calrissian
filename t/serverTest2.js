@@ -1,20 +1,31 @@
 'use strict';
 
 const request = require('request');
-var proc;
+var tests = [
+  testBody
+];
 
-setup();
-setTimeout(testBody,100);
-setTimeout(teardown,200);
+run(tests);
 
-function setup() {
+function run(tests) {
   // Create child process
   console.log("Starting application");
-  proc = require('child_process').spawn('node', ['./server.js'], {
+  var proc = require('child_process').spawn('node', ['./server.js'], {
     detached: true,
     stdio:    'inherit',
   });
   console.log(`Proc pid ${proc.pid}`);
+
+  var i;
+  for (i = 0; i < tests.length; i++) {
+    tests[i]();
+  }
+
+  // Kill the child process
+  proc.kill();
+  if ( proc.killed == true ) {
+    console.log('Killed application');
+  }
 }
 
 function testBody() {
@@ -27,12 +38,4 @@ function testBody() {
       console.log(err);
     }
   });
-}
-
-function teardown() {
-  // Kill the child process
-  proc.kill();
-  if ( proc.killed == true ) {
-    console.log('Killed application');
-  }
 }
