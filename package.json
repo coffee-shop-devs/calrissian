@@ -4,10 +4,8 @@
   "description": "Rando project for generating rando languages for rando raisons.",
   "main": "server.js",
   "dependencies": {
-    "compression": "^1.7.4",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "helmet": "^3.21.2",
     "request": "^2.88.0"
   },
   "scripts": {

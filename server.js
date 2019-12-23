@@ -1,7 +1,5 @@
 const express     = require('express');
 const app         = express();
-const compression = require('compression');
-const helmet      = require('helmet');
 const fs          = require('fs');
 const css         = { style: fs.readFileSync('./views/styles.css', 'utf8')}
 
@@ -12,11 +10,10 @@ const server = app.listen(port, function () {});
 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
-app.use([compression, helmet])
 
 app.get('/?', function (req, res) {
   res.render('index.html', {
-    title: "Title",
+    title: "Random Language Generator",
     css:   css,
   })
 })
