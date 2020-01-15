@@ -5,7 +5,7 @@ const path    = require('path');
 const css     = { style: fs.readFileSync('./views/styles.css', 'utf8')}
 
 // Change this if you have something else in mind
-var port = 3000;
+const port = 3000;
 
 const server = app.listen(port, function () {});
 
